@@ -27,7 +27,7 @@ export default new Vuex.Store({
               resolve();
             })
             .catch(err => {
-              // console.log(err);
+              console.log(err);
               reject();
             });
         } else {
@@ -38,7 +38,7 @@ export default new Vuex.Store({
               resolve();
             })
             .catch(err => {
-              // console.log(err);
+              console.log(err);
               reject();
             });
         }
