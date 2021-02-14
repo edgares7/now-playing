@@ -1,6 +1,8 @@
 <template>
   <div class="home bg-black">
-    <h1 class="text-white">Now Playing</h1>
+    <div class="header w-screen flex items-center justify-center">
+      <h1 class="text-white">Now Playing</h1>
+    </div>
     <Movie />
   </div>
 </template>
@@ -14,3 +16,9 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+h1 {
+  font-size: 40px;
+  font-family: "Righteous", cursive;
+}
+</style>
