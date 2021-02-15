@@ -3,16 +3,16 @@
     <div class="header w-screen flex items-center justify-center">
       <h1 class="text-white">Now Playing</h1>
     </div>
-    <Movie />
+    <MovieOverview />
   </div>
 </template>
 
 <script>
-import Movie from "@/components/Movie";
+import MovieOverview from "@/components/MovieOverview";
 export default {
   name: "Home",
   components: {
-    Movie
+    MovieOverview
   }
 };
 </script>

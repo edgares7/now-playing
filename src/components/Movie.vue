@@ -1,20 +1,35 @@
 <template>
   <div class="movie">
-    <Search />
-    <div class="movie_container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-      <div
-        v-for="(movie, i) in currentMovies"
-        :key="i"
-        class="movie__container--single"
-      >
+    <div
+      class="movie__header flex items-center justify-center"
+      :style="{
+        'background-image': 'url(' + backdropUrl + movie.backdrop_path + ')'
+      }"
+    >
+      <div class="movie__header--title">
+        <h1 class="movie-title">
+          {{ movie.title }}
+          <span v-if="movie.tagline">{{ movie.tagline }}</span>
+        </h1>
+      </div>
+    </div>
+    <div class="movie__body flex justify-between">
+      <div class="movie__body--image">
         <img
-          class="poster"
-          :src="`https://image.tmdb.org/t/p/w500` + movie.poster_path"
-          alt=""
+          v-if="movie.poster_path"
+          class="movie__img"
+          :src="posterUrl + movie.poster_path"
         />
-        <div class="info flex flex-col items-center justify-center">
-          <h2 class="info__title text-center py-5">{{ movie.title }}</h2>
-          <p class="info__overview text-center">{{ movie.overview }}</p>
+      </div>
+      <div class="movie__body--copy flex flex-col py-10 px-6">
+        <div class="overview" v-if="movie.overview">
+          {{ movie.overview }}
+        </div>
+        <div class="release__date py-4" v-if="movie.release_date">
+          <h2 class="release__date--header font-bold text-red-700">
+            Release Date
+          </h2>
+          <div class="release__date--date">{{ movie.release_date }}</div>
         </div>
       </div>
     </div>
@@ -22,47 +37,63 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import Search from "@/components/Search";
+// import img from '@/directives/v-image.js'
+// import formatDate from '@/directives/v-formatDate.js'
 export default {
   name: "Movie",
-  components: {
-    Search
+  data() {
+    return {
+      backdropUrl: "https://image.tmdb.org/t/p/w500",
+      posterUrl: "https://image.tmdb.org/t/p/w600_and_h900_bestv2"
+    };
   },
-  computed: {
-    ...mapState(["currentMovies"])
+  props: {
+    movie: {
+      type: Object
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .movie {
-  &__container {
-    &--single {
+  font-family: "Roboto Slab", serif;
+  &__header {
+    position: relative;
+    height: 350px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(#081c24, 0.85);
+    }
+    &--title {
       position: relative;
-      &:hover {
-        .info {
-          background-color: rgba(0, 0, 0, 0.7);
-          z-index: 10;
-        }
-      }
+      color: #ffffff;
+      font-weight: 500;
+      line-height: 1.4;
+      font-size: 24px;
     }
   }
-}
-
-.info {
-  position: absolute;
-  color: #ffffff;
-  top: 0;
-  height: 100%;
-  z-index: -1;
-  &__title {
-    font-size: 20px;
-    font-weight: 900;
-  }
-  &__overview {
-    max-width: 80%;
-    font-size: 12px;
+  &__body {
+    &--image {
+      background: #081c24;
+      width: calc(45% - 40px);
+      margin-top: -60px;
+      margin-left: 40px;
+      z-index: 10;
+    }
+    &--copy {
+      width: 50%;
+    }
   }
 }
 </style>
