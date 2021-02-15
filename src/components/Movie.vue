@@ -37,8 +37,6 @@
 </template>
 
 <script>
-// import img from '@/directives/v-image.js'
-// import formatDate from '@/directives/v-formatDate.js'
 export default {
   name: "Movie",
   data() {
@@ -85,7 +83,6 @@ export default {
   }
   &__body {
     &--image {
-      background: #081c24;
       width: calc(45% - 40px);
       margin-top: -60px;
       margin-left: 40px;
