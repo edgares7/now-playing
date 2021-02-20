@@ -19,9 +19,12 @@
         </div>
         <modal
           :height="800"
-          width="800"
+          :width="800"
           :name="movie.title.replace(/\s+/g, '')"
         >
+          <button @click="$modal.hide(movie.title.replace(/\s+/g, ''))">
+            <CloseIcon />
+          </button>
           <Movie :movie="movie" />
         </modal>
       </div>
@@ -33,11 +36,13 @@
 import { mapState } from "vuex";
 import Search from "@/components/Search";
 import Movie from "@/components/Movie";
+import CloseIcon from "@/components/CloseIcon";
 export default {
   name: "MovieOverview",
   components: {
     Search,
-    Movie
+    Movie,
+    CloseIcon
   },
   computed: {
     ...mapState(["currentMovies"])
@@ -79,5 +84,11 @@ export default {
     max-width: 80%;
     font-size: 12px;
   }
+}
+button {
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  z-index: 10;
 }
 </style>

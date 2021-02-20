@@ -7,3 +7,12 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+@media (max-width: 480px) {
+  .vm--modal {
+    left: 0!important;
+    top: 0!important;
+    width: 375px!important;
+    height: 812px!important;
+  }
+}

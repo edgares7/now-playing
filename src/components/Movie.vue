@@ -87,6 +87,9 @@ export default {
       margin-top: -60px;
       margin-left: 40px;
       z-index: 10;
+      @media (max-width: 480px) {
+        width: calc(55% - 40px);
+      }
     }
     &--copy {
       width: 50%;
