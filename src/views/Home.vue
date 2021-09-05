@@ -1,7 +1,7 @@
 <template>
   <div class="home bg-black">
     <div class="header w-screen flex items-center justify-center">
-      <h1 class="text-white">Now Playing</h1>
+      <h1 class="text-white">Currently Playing</h1>
     </div>
     <MovieOverview />
   </div>
